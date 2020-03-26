@@ -11,7 +11,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('offer', '__first__'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -122,12 +121,6 @@ class Migration(migrations.Migration):
             model_name='account',
             name='primary_user',
             field=models.ForeignKey(related_name='accounts', on_delete=django.db.models.deletion.SET_NULL, blank=True, to=settings.AUTH_USER_MODEL, null=True),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='account',
-            name='product_range',
-            field=models.ForeignKey(on_delete=models.CASCADE, blank=True, to='offer.Range', null=True),
             preserve_default=True,
         ),
         migrations.AddField(

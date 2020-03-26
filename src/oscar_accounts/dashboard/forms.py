@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.core import exceptions
 from django.utils.translation import ugettext_lazy as _
-from oscar.core.loading import get_model
+from oscar_accounts.loading import get_model
 from oscar.forms.widgets import DatePickerInput
 from oscar.templatetags.currency_filters import currency
 
@@ -44,8 +44,6 @@ class EditAccountForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['product_range'].help_text = (
-            "You may need to create a product range first")
 
         # Add field for account type (if there is a choice)
         deferred_income = AccountType.objects.get(name=names.DEFERRED_INCOME)
@@ -138,7 +136,7 @@ class ChangeStatusForm(forms.ModelForm):
     class Meta:
         model = Account
         exclude = ['name', 'account_type', 'description', 'category', 'code', 'start_date',
-                   'end_date', 'credit_limit', 'balance', 'product_range',
+                   'end_date', 'credit_limit', 'balance',
                    'primary_user', 'secondary_users',
                    'can_be_used_for_non_products']
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from oscar.core.loading import get_model
+from .loading import get_model
 from treebeard.admin import TreeAdmin
 
 AccountType = get_model('oscar_accounts', 'AccountType')

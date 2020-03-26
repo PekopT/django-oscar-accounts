@@ -2,8 +2,8 @@ from decimal import Decimal as D
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from oscar.core.loading import get_model
-from oscar.templatetags.currency_filters import currency
+from oscar_accounts.loading import get_model
+from oscar_accounts.templatetags.currency_filters import currency
 
 Account = get_model('oscar_accounts', 'Account')
 
@@ -59,9 +59,6 @@ class AllocationForm(forms.Form):
         self.max_allocation = self.get_max_amount()
         initial = {'amount': self.max_allocation}
         super().__init__(initial=initial, *args, **kwargs)
-        if self.account.product_range:
-            self.fields['amount'].help_text = (
-                "Restrictions apply to which products can be paid for")
 
     def get_max_amount(self):
         max_allocation = self.account.permitted_allocation(

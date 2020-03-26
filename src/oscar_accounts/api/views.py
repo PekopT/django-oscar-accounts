@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
-from oscar.core.loading import get_model
+from oscar_accounts.loading import get_model
 
 from oscar_accounts import codes, exceptions, facade, names
 from oscar_accounts.api import errors

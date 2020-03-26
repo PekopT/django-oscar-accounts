@@ -7,7 +7,6 @@ from django.db.models import Sum
 from django.urls import reverse
 from django.utils import six, timezone
 from django.utils.translation import gettext_lazy as _
-from oscar.core.compat import AUTH_USER_MODEL
 from treebeard.mp_tree import MP_Node
 
 from oscar_accounts import exceptions
@@ -74,10 +73,10 @@ class Account(models.Model):
     # As a rule of thumb, you don't normally need to use both primary_user and
     # secondary_users within the same project - just one or the other.
     primary_user = models.ForeignKey(
-        AUTH_USER_MODEL, models.SET_NULL, related_name="accounts",
+        settings.AUTH_USER_MODEL, models.SET_NULL, related_name="accounts",
         null=True, blank=True
     )
-    secondary_users = models.ManyToManyField(AUTH_USER_MODEL, blank=True)
+    secondary_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
 
     # Track the status of a account - this is often used so that expired
     # account can have their money transferred back to some parent account and
@@ -103,10 +102,6 @@ class Account(models.Model):
     # client code to use them to enforce business logic.
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
-
-    # Accounts are sometimes restricted to only work on a specific range of
-    # products.  This is the only link with Oscar.
-    product_range = models.ForeignKey('offer.Range', models.CASCADE, null=True, blank=True)
 
     # Allow accounts to be restricted for products only (ie can't be used to
     # pay for shipping)
@@ -187,12 +182,7 @@ class Account(models.Model):
             total = order_total - shipping_total
         else:
             total = order_total
-        if not self.product_range:
-            return min(total, self.balance)
         range_total = D('0.00')
-        for line in basket.all_lines():
-            if self.product_range.contains_product(line.product):
-                range_total += line.line_price_incl_tax_and_discounts
         if self.can_be_used_for_non_products:
             range_total += shipping_total
         return min(range_total, self.balance)
@@ -349,7 +339,7 @@ class Transfer(models.Model):
     # We record who the user was who authorised this transaction.  As
     # transactions should never be deleted, we allow this field to be null and
     # also record some audit information.
-    user = models.ForeignKey(AUTH_USER_MODEL, models.SET_NULL, related_name="transfers", null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, related_name="transfers", null=True)
     username = models.CharField(max_length=128)
 
     date_created = models.DateTimeField(auto_now_add=True)

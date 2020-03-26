@@ -1,12 +1,12 @@
 from django.conf.urls import url
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
-from oscar.core.application import OscarConfig
+from django.apps import AppConfig
 
 from oscar_accounts.api import decorators
 
 
-class AccountsAPIConfig(OscarConfig):
+class AccountsAPIConfig(AppConfig):
     name = 'oscar_accounts.api'
     verbose_name = _('Accounts API')
     label = 'oscar_accounts_api'

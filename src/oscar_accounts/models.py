@@ -1,4 +1,4 @@
-from oscar.core.loading import is_model_registered
+from oscar_accounts.loading import is_model_registered
 
 from oscar_accounts import abstract_models
 

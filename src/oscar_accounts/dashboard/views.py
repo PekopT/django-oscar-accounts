@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
-from oscar.core.loading import get_model
+from oscar_accounts.loading import get_model
 from oscar.templatetags.currency_filters import currency
 
 from oscar_accounts import exceptions, facade, names

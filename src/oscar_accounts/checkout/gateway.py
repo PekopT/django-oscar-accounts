@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
-from oscar.apps.payment.exceptions import UnableToTakePayment
-from oscar.core.loading import get_model
+from oscar_accounts.exceptions import UnableToTakePayment
+from oscar_accounts.loading import get_model
 
 from oscar_accounts import codes, core, exceptions, facade
 

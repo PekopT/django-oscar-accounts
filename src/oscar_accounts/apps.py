@@ -1,8 +1,7 @@
 from django.utils.translation import gettext_lazy as _
-from oscar.core.application import OscarConfig
+from django.apps import AppConfig
 
-
-class AccountsConfig(OscarConfig):
+class AccountsConfig(AppConfig):
 
     name = 'oscar_accounts'
     verbose_name = _('Accounts')

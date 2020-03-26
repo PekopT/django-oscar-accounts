@@ -1,4 +1,4 @@
-from oscar.core.loading import get_model
+from oscar_accounts.loading import get_model
 
 
 def create_default_accounts():

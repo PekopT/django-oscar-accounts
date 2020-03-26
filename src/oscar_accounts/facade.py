@@ -1,6 +1,6 @@
 import logging
 
-from oscar.core.loading import get_model
+from oscar_accounts.loading import get_model
 
 from oscar_accounts import core, exceptions
 
