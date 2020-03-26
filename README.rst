@@ -1,4 +1,14 @@
 ===========================
+FROM PekopT
+===========================
+This package forked from django-oscar/django-oscar-accounts and made independent from django-oscar
+
+This feature is unavailable:
+
+* --An account can be restricted so that it can only be used to pay for a range of
+  products.--
+
+===========================
 Managed accounts for Django
 ===========================
 
@@ -62,9 +72,6 @@ Features
 
 * An account can have a start and end date to allow its usage in a limited time
   window
-
-* An account can be restricted so that it can only be used to pay for a range of
-  products.
 
 * Accounts can be categorised
 
