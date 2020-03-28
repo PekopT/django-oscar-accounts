@@ -1,6 +1,10 @@
 from oscar_accounts.loading import get_model
 
 
+def create_default_accounts_for_run_python(arg1, arg2, *args, **kwargs):
+    create_default_accounts()
+
+
 def create_default_accounts():
     """Create the default structure"""
     from oscar_accounts import names
