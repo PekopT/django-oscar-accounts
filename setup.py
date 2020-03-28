@@ -4,6 +4,7 @@ from setuptools import find_packages, setup
 install_requires = [
     'django>=1.11,<2.3',
     'python-dateutil>=2.6,<3.0',
+    'Babel==2.8.0',
 ]
 
 tests_require = [

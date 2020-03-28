@@ -6,3 +6,4 @@ pytest-django>=3.5,<3.9
 tox>=2.9,<3.15
 freezegun>=0.3,<0.4
 sorl-thumbnail
+Babel==2.8.0
